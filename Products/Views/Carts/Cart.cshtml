@@ -1,0 +1,41 @@
+﻿@if (Session["cart"] != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                name
+            </th>
+            <th>
+                price
+            </th>
+            <th>
+                added at
+            </th>
+        </tr>
+
+
+        @foreach (var item in (List<Products.Models.Cart>)Session["cart"])
+        {
+
+    <tr>
+
+        <td>
+            @item.product.name
+        </td>
+        <td>
+            @item.product.price
+        </td>
+        <td>
+            @item.added_at
+        </td>
+        <td>
+            @Html.ActionLink("Remove" , "deleteCartItem" , "Carts" , new {id=item.productId} , null)
+        </td>
+    </tr>
+
+
+        }
+
+    </table>
+
+}

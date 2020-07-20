@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Products.Models.Product>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    #inp {
+        width: 400px;
+        border: solid 1px gray;
+        cursor: pointer;
+    }
+    .card {
+        border-top: solid 3px steelblue;
+    }
+
+
+</style>
+<form method="post">
+    <div class="container mt-5">
+        <div class="row justify-content-center text-center">
+            <div class="col-2 text-end">
+                <h4>Filter :</h4>
+            </div>
+            <div class="col-lg-4">
+                <div class="dropdown">
+                    <input class="btn  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                           value="@ViewBag.type" name="search" id="inp" readonly />
+                    <div class="dropdown-menu" style="width:400px;">
+                        <button class="dropdown-item" id="All" type="submit" onclick="change('All')" value="All Categories">All Categories </button>
+                        @foreach (var item in ViewBag.values)
+                        {
+                            <button class="dropdown-item" id="@item.id" type="submit" onclick="change(@item.id)" value="@item.name">@item.name</button>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <div class="">
+                        <a href="/Products/Create"> <button type="button" class="btn btn-success"> Add Product</button> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    function change(id) {
+        var val = document.getElementById(id).value;
+        document.getElementById("inp").value = val;
+    }
+</script>
+<div class="container-fluid">
+    <div class="row justify-content-around">
+
+        @foreach (var item in Model)
+        {
+            <div class="card col-lg-2 col-md-4 col-sm-4 col-xs-6 mt-5">
+                <a href="../Products/Details?id=@item.id ">
+                    <img class="card-img-top " src="~/Uploads/@Html.DisplayFor(modelItem => item.image)" alt="@Html.DisplayFor(modelItem => item.name)" height="200">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.name)</h5>
+                    </div>
+                    <div class="">
+                        <div class="row text-center">
+                            <h3 class="col text-success"> @Html.DisplayFor(modelItem => item.price) <span class="text-success">$</span> </h3>
+                        </div>
+                        <div class="row justify-content-center">
+                            @Html.ActionLink("Add To Cart", "../Carts/AddToCart", "Carts", new { id = item.id }, new { @class = "col-lg-9 col-sm-7 col-3 cartbtn text-light bg-primary p-2 rounded" })
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+

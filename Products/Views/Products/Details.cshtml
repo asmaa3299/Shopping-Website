@@ -1,0 +1,28 @@
+﻿@model Products.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <div class="container">
+        <div class="row text-center">
+            <div class="col mt-5"><h3>@Html.DisplayFor(model => model.name)-@Html.DisplayFor(model => model.price) EGP (@Html.DisplayFor(model => model.category.name))</h3></div>
+        </div>
+        <hr />
+        <div class="row text-center">
+            <div class="col">
+                <img class="card-img-top" src="~/Uploads/@Html.DisplayFor(model => model.image)" alt="@Html.DisplayFor(model => model.name)" style="width:200px;">
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col mt-5"><p>@Html.DisplayFor(model => model.description)</p></div>
+        </div>
+        <div class="row text-center">
+            <div class="col my-3">
+                <a href="../Products/Edit?id=@Model.id"><button class="btn btn-success">Update</button></a>
+                <a href="../Products/Delete?id=@Model.id"><button class="btn btn-danger">Delete</button></a>
+            </div>
+        </div>
+        
+    </div>
+

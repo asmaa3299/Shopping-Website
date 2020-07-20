@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/content/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand offset-lg-1" href="/home" style="color:steelblue;">STORE</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <ul class="navbar-nav offset-lg-1">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">Home</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto mr-5">
+                <li class="nav-item">
+                    <a class="btn btn-primary" href="/home#book" data-toggle="modal" data-target="#myModal">Cart List</a>
+                </li>
+                <div class="modal fade" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">CART</h3>
+                                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                            </div>
+                            <div class="modal-body">
+                                @Html.Partial("/views/Carts/Cart.cshtml")
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+
+    <section class="container-fluid bg-dark">
+        <div class="row justify-content-center" style="padding-bottom:20px; ">
+            <div class="col-12 mt-4 text-center">
+                <p class="text-light">©Copyright Internet Application.</p>
+            </div>
+        </div>
+    </section>
+    <script src="~/scripts/jquery.min.js"></script>
+    <script src="~/scripts/popper.min.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+
+</body>
+</html>
